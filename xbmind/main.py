@@ -10,7 +10,7 @@ from __future__ import annotations
 import asyncio
 import signal
 import uuid
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from xbmind.audio.capture import AudioCapture
 from xbmind.audio.player import AudioPlayer
@@ -20,18 +20,22 @@ from xbmind.bluetooth.manager import BluetoothManager
 from xbmind.config import XBMindSettings, load_settings
 from xbmind.llm.base import LLMMessage, LLMProvider
 from xbmind.llm.memory import ConversationMemory
-from xbmind.llm.tools.base_tool import BaseTool
 from xbmind.llm.tools.datetime_tool import DateTimeTool
 from xbmind.llm.tools.shell_tool import ShellTool
 from xbmind.llm.tools.timer import TimerTool
 from xbmind.llm.tools.weather import WeatherTool
 from xbmind.llm.tools.wikipedia import WikipediaTool
-from xbmind.stt.base import STTProvider
-from xbmind.tts.base import TTSProvider
 from xbmind.utils.chime import ChimePlayer
 from xbmind.utils.events import Event, EventBus, EventType
 from xbmind.utils.health import HealthServer
 from xbmind.utils.logger import get_logger, setup_logging
+
+if TYPE_CHECKING:
+    import numpy as np
+
+    from xbmind.llm.tools.base_tool import BaseTool
+    from xbmind.stt.base import STTProvider
+    from xbmind.tts.base import TTSProvider
 
 log = get_logger(__name__)
 
@@ -240,7 +244,6 @@ class Orchestrator:
             log.error("orchestrator.components_missing")
             return
 
-        import numpy as np
 
         audio: np.ndarray = event.data
 

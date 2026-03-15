@@ -9,13 +9,14 @@ from __future__ import annotations
 import asyncio
 from typing import TYPE_CHECKING
 
-import numpy as np
 import sounddevice as sd
 
 from xbmind.utils.events import Event, EventBus, EventType
 from xbmind.utils.logger import get_logger
 
 if TYPE_CHECKING:
+    import numpy as np
+
     from xbmind.config import AudioConfig
 
 log = get_logger(__name__)

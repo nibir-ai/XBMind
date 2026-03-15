@@ -4,7 +4,7 @@
 
 **Turn any Bluetooth speaker into an offline-first AI smart speaker.**
 
-[![CI](https://github.com/xbmind/xbmind/actions/workflows/ci.yml/badge.svg)](https://github.com/xbmind/xbmind/actions/workflows/ci.yml)
+[![CI](https://github.com/nibir-ai/XBMind/actions/workflows/ci.yml/badge.svg)](https://github.com/nibir-ai/XBMind/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
@@ -71,8 +71,8 @@
 ### One-Command Install
 
 ```bash
-git clone https://github.com/xbmind/xbmind.git
-cd xbmind
+git clone https://github.com/nibir-ai/XBMind.git
+cd XBMind
 ./scripts/install.sh
 ```
 

@@ -7,9 +7,10 @@ All tools must inherit from :class:`BaseTool` and implement
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from xbmind.llm.base import ToolDefinition
+if TYPE_CHECKING:
+    from xbmind.llm.base import ToolDefinition
 
 
 class BaseTool(ABC):

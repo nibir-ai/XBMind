@@ -22,8 +22,8 @@
 ## One-Command Install
 
 ```bash
-git clone https://github.com/xbmind/xbmind.git
-cd xbmind
+git clone https://github.com/nibir-ai/XBMind.git
+cd XBMind
 ./scripts/install.sh
 ```
 

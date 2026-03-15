@@ -64,10 +64,10 @@ dev = [
 xbmind = "xbmind.main:main"
 
 [project.urls]
-Homepage = "https://github.com/xbmind/xbmind"
-Documentation = "https://github.com/xbmind/xbmind/tree/main/docs"
-Repository = "https://github.com/xbmind/xbmind"
-Issues = "https://github.com/xbmind/xbmind/issues"
+Homepage = "https://github.com/nibir-ai/XBMind"
+Documentation = "https://github.com/nibir-ai/XBMind/tree/main/docs"
+Repository = "https://github.com/nibir-ai/XBMind"
+Issues = "https://github.com/nibir-ai/XBMind/issues"
 
 [tool.setuptools.packages.find]
 include = ["xbmind*"]
@@ -89,7 +89,14 @@ select = [
     "TCH",  # flake8-type-checking
     "RUF",  # ruff-specific rules
 ]
-ignore = ["E501"]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "N802",   # D-Bus agent methods must be PascalCase
+    "B027",   # empty base class methods are intentional (optional overrides)
+    "RUF002", # en-dash in docstrings is fine
+    "SIM102", # nested if is sometimes clearer
+    "SIM105", # try-except-pass is clearer than contextlib.suppress for D-Bus ops
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["xbmind"]

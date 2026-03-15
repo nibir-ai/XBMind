@@ -8,6 +8,7 @@ reconnection attempts.
 from __future__ import annotations
 
 import asyncio
+import contextlib
 from typing import TYPE_CHECKING
 
 import dbus
@@ -172,10 +173,8 @@ class BluetoothManager:
         self._running = False
         if self._reconnect_task:
             self._reconnect_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._reconnect_task
-            except asyncio.CancelledError:
-                pass
             self._reconnect_task = None
 
         loop = asyncio.get_running_loop()
@@ -279,7 +278,7 @@ class BluetoothManager:
 
             props = interfaces[_DEVICE_IFACE]
             name = str(props.get("Name", "")).lower()
-            address = str(props.get("Address", "")).upper().replace(":", "_")
+            str(props.get("Address", "")).upper().replace(":", "_")
 
             if target_mac and target_mac in str(path).upper():
                 return str(path)
@@ -314,10 +313,8 @@ class BluetoothManager:
                     return
 
         # Trust the device
-        try:
+        with contextlib.suppress(dbus.exceptions.DBusException):
             props.Set(_DEVICE_IFACE, "Trusted", dbus.Boolean(True))
-        except dbus.exceptions.DBusException:
-            pass
 
         # Connect
         connected = bool(props.Get(_DEVICE_IFACE, "Connected"))
