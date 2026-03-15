@@ -244,7 +244,6 @@ class Orchestrator:
             log.error("orchestrator.components_missing")
             return
 
-
         audio: np.ndarray = event.data
 
         # ── Transcribe ────────────────────────────────────
@@ -433,9 +432,11 @@ class Orchestrator:
 
         if provider == "google_cloud":
             from xbmind.stt.google_cloud import GoogleCloudSTT
+
             return GoogleCloudSTT(self._settings.stt.google_cloud)
 
         from xbmind.stt.faster_whisper import FasterWhisperSTT
+
         return FasterWhisperSTT(self._settings.stt.faster_whisper)
 
     def _create_llm_provider(self) -> LLMProvider:
@@ -448,15 +449,19 @@ class Orchestrator:
 
         if provider == "openai":
             from xbmind.llm.openai_api import OpenAILLM
+
             return OpenAILLM(self._settings.llm.openai)
         if provider == "claude":
             from xbmind.llm.claude_api import ClaudeLLM
+
             return ClaudeLLM(self._settings.llm.claude)
         if provider == "gemini":
             from xbmind.llm.gemini_api import GeminiLLM
+
             return GeminiLLM(self._settings.llm.gemini)
 
         from xbmind.llm.ollama import OllamaLLM
+
         return OllamaLLM(self._settings.llm.ollama)
 
     def _create_tts_provider(self) -> TTSProvider:
@@ -469,9 +474,11 @@ class Orchestrator:
 
         if provider == "elevenlabs":
             from xbmind.tts.elevenlabs import ElevenLabsTTS
+
             return ElevenLabsTTS(self._settings.tts.elevenlabs)
 
         from xbmind.tts.piper import PiperTTS
+
         return PiperTTS(self._settings.tts.piper)
 
     def _register_tools(self) -> None:

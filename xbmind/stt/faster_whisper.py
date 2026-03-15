@@ -66,9 +66,7 @@ class FasterWhisperSTT(STTProvider):
         self._model = None
         log.info("stt.faster_whisper.stopped")
 
-    async def transcribe(
-        self, audio: np.ndarray, sample_rate: int = 16000
-    ) -> TranscriptionResult:
+    async def transcribe(self, audio: np.ndarray, sample_rate: int = 16000) -> TranscriptionResult:
         """Transcribe audio using faster-whisper.
 
         Args:
@@ -85,9 +83,7 @@ class FasterWhisperSTT(STTProvider):
             raise RuntimeError("Model not loaded — call start() first")
 
         loop = asyncio.get_running_loop()
-        result = await loop.run_in_executor(
-            None, self._transcribe_sync, audio, sample_rate
-        )
+        result = await loop.run_in_executor(None, self._transcribe_sync, audio, sample_rate)
         return result
 
     def _load_model(self) -> None:
@@ -100,9 +96,7 @@ class FasterWhisperSTT(STTProvider):
             compute_type=self._config.compute_type,
         )
 
-    def _transcribe_sync(
-        self, audio: np.ndarray, sample_rate: int
-    ) -> TranscriptionResult:
+    def _transcribe_sync(self, audio: np.ndarray, sample_rate: int) -> TranscriptionResult:
         """Run transcription synchronously.
 
         Args:

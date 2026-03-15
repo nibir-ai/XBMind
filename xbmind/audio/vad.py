@@ -145,9 +145,7 @@ class VoiceActivityDetector:
             self._speech_duration = chunk_duration
             self._total_samples = sum(len(c) for c in self._speech_chunks)
 
-            await self._event_bus.publish(
-                Event(EventType.VAD_SPEECH_START, source="vad")
-            )
+            await self._event_bus.publish(Event(EventType.VAD_SPEECH_START, source="vad"))
             log.info("vad.speech_start", probability=round(prob, 3))
 
         elif is_speech and self._is_speaking:

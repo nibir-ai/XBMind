@@ -130,9 +130,7 @@ class ElevenLabsTTS(TTSProvider):
                 status_code=exc.response.status_code,
                 detail=exc.response.text[:200],
             )
-            raise RuntimeError(
-                f"ElevenLabs API error: {exc.response.status_code}"
-            ) from exc
+            raise RuntimeError(f"ElevenLabs API error: {exc.response.status_code}") from exc
         except httpx.TimeoutException as exc:
             log.error("tts.elevenlabs.timeout")
             raise RuntimeError("ElevenLabs API timed out") from exc

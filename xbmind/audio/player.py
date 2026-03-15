@@ -161,9 +161,7 @@ class AudioPlayer:
 
             loop = asyncio.get_running_loop()
             try:
-                await loop.run_in_executor(
-                    None, self._play_sync, audio, self._sample_rate
-                )
+                await loop.run_in_executor(None, self._play_sync, audio, self._sample_rate)
             except Exception:
                 log.exception("audio_player.playback_error")
             finally:

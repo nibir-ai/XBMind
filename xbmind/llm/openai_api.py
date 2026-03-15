@@ -120,9 +120,7 @@ class OpenAILLM(LLMProvider):
                         args = json_module.loads(args)
                     except json_module.JSONDecodeError:
                         args = {"raw": args}
-                tool_calls.append(
-                    ToolCall(name=tc.function.name, arguments=args, id=tc.id or "")
-                )
+                tool_calls.append(ToolCall(name=tc.function.name, arguments=args, id=tc.id or ""))
 
         usage_tokens = 0
         if response.usage:

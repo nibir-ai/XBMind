@@ -131,9 +131,7 @@ class MemoryConfig(BaseModel):
 class LLMConfig(BaseModel):
     """LLM provider settings."""
 
-    provider: str = Field(
-        default="ollama", pattern=r"^(ollama|openai|claude|gemini)$"
-    )
+    provider: str = Field(default="ollama", pattern=r"^(ollama|openai|claude|gemini)$")
     system_prompt: str = Field(
         default=(
             "You are XBMind, a helpful AI voice assistant running on a local machine. "

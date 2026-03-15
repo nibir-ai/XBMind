@@ -61,9 +61,7 @@ class GoogleCloudSTT(STTProvider):
         self._client = None
         log.info("stt.google_cloud.stopped")
 
-    async def transcribe(
-        self, audio: np.ndarray, sample_rate: int = 16000
-    ) -> TranscriptionResult:
+    async def transcribe(self, audio: np.ndarray, sample_rate: int = 16000) -> TranscriptionResult:
         """Transcribe audio using Google Cloud Speech.
 
         Args:
@@ -80,9 +78,7 @@ class GoogleCloudSTT(STTProvider):
             raise RuntimeError("Client not initialised — call start() first")
 
         loop = asyncio.get_running_loop()
-        return await loop.run_in_executor(
-            None, self._transcribe_sync, audio, sample_rate
-        )
+        return await loop.run_in_executor(None, self._transcribe_sync, audio, sample_rate)
 
     def _init_client(self) -> None:
         """Initialise the speech client (blocking)."""
@@ -90,9 +86,7 @@ class GoogleCloudSTT(STTProvider):
 
         self._client = speech.SpeechClient()
 
-    def _transcribe_sync(
-        self, audio: np.ndarray, sample_rate: int
-    ) -> TranscriptionResult:
+    def _transcribe_sync(self, audio: np.ndarray, sample_rate: int) -> TranscriptionResult:
         """Run Google Cloud transcription synchronously.
 
         Args:

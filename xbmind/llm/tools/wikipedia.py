@@ -128,9 +128,7 @@ class WikipediaTool(BaseTool):
             "format": "json",
         }
 
-        response = await client.get(
-            search_url, params=params, follow_redirects=True
-        )
+        response = await client.get(search_url, params=params, follow_redirects=True)
         response.raise_for_status()
         data = response.json()
 

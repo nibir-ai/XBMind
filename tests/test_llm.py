@@ -203,9 +203,7 @@ class TestConversationMemory:
         memory = ConversationMemory(memory_config)
         await memory.start()
 
-        await memory.add_message(
-            "test_session", LLMMessage(role="user", content="Hello")
-        )
+        await memory.add_message("test_session", LLMMessage(role="user", content="Hello"))
         await memory.clear_session("test_session")
 
         count = await memory.get_message_count("test_session")

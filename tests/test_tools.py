@@ -117,9 +117,7 @@ class TestTimerTool:
         assert "Error" in result
 
     @pytest.mark.asyncio
-    async def test_cancel_all(
-        self, timer_config: TimerToolConfig, event_bus: EventBus
-    ) -> None:
+    async def test_cancel_all(self, timer_config: TimerToolConfig, event_bus: EventBus) -> None:
         """Test cancelling all active timers."""
         tool = TimerTool(timer_config, event_bus)
         await tool.execute(seconds=30, label="timer1")

@@ -81,9 +81,7 @@ class AudioSinkManager:
             ``True`` if a matching sink was found and set as default.
         """
         loop = asyncio.get_running_loop()
-        return await loop.run_in_executor(
-            None, self._set_bluetooth_sink_sync, device_name_fragment
-        )
+        return await loop.run_in_executor(None, self._set_bluetooth_sink_sync, device_name_fragment)
 
     def _set_bluetooth_sink_sync(self, device_name_fragment: str) -> bool:
         """Synchronously find and set the Bluetooth sink."""

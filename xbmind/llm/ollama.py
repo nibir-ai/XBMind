@@ -174,9 +174,7 @@ class OllamaLLM(LLMProvider):
                     arguments = json.loads(arguments)
                 except json.JSONDecodeError:
                     arguments = {"raw": arguments}
-            tool_calls.append(
-                ToolCall(name=tool_name, arguments=arguments, id=f"call_{i}")
-            )
+            tool_calls.append(ToolCall(name=tool_name, arguments=arguments, id=f"call_{i}"))
 
         finish_reason = "tool_calls" if tool_calls else "stop"
 

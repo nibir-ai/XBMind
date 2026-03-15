@@ -92,16 +92,18 @@ class ClaudeLLM(LLMProvider):
             if msg.role == "system":
                 system_content = msg.content
             elif msg.role == "tool":
-                user_messages.append({
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "tool_result",
-                            "tool_use_id": msg.tool_call_id,
-                            "content": msg.content,
-                        }
-                    ],
-                })
+                user_messages.append(
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "tool_result",
+                                "tool_use_id": msg.tool_call_id,
+                                "content": msg.content,
+                            }
+                        ],
+                    }
+                )
             else:
                 entry: dict[str, Any] = {"role": msg.role, "content": msg.content}
                 user_messages.append(entry)

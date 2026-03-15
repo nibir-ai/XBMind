@@ -301,11 +301,7 @@ class ConversationMemory:
         if self._db is None:
             return
 
-        await self._db.execute(
-            "DELETE FROM conversations WHERE session_id = ?", (session_id,)
-        )
-        await self._db.execute(
-            "DELETE FROM summaries WHERE session_id = ?", (session_id,)
-        )
+        await self._db.execute("DELETE FROM conversations WHERE session_id = ?", (session_id,))
+        await self._db.execute("DELETE FROM summaries WHERE session_id = ?", (session_id,))
         await self._db.commit()
         log.info("memory.session_cleared", session_id=session_id)

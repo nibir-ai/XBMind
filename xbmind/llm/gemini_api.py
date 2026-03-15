@@ -164,9 +164,7 @@ class GeminiLLM(LLMProvider):
         finish = "tool_calls" if tool_calls else "stop"
         usage_tokens = 0
         if hasattr(response, "usage_metadata") and response.usage_metadata:
-            usage_tokens = (
-                getattr(response.usage_metadata, "total_token_count", 0)
-            )
+            usage_tokens = getattr(response.usage_metadata, "total_token_count", 0)
 
         log.info(
             "llm.gemini.response",

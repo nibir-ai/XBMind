@@ -162,9 +162,7 @@ class BluetoothManager:
         await loop.run_in_executor(None, self._discover_and_connect)
 
         if self._config.reconnect_enabled:
-            self._reconnect_task = asyncio.create_task(
-                self._reconnect_loop(), name="bt_reconnect"
-            )
+            self._reconnect_task = asyncio.create_task(self._reconnect_loop(), name="bt_reconnect")
 
         log.info("bt.manager_started")
 
@@ -236,6 +234,7 @@ class BluetoothManager:
         adapter.StartDiscovery()
 
         import time
+
         # Poll for device for up to 30 seconds
         for _ in range(60):
             time.sleep(0.5)

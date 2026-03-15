@@ -79,10 +79,7 @@ class ShellTool(BaseTool):
         # Check against allowlist
         if not self._is_allowed(command):
             allowed_cmds = ", ".join(self._config.allowlist)
-            return (
-                f"Error: Command '{command}' is not allowed. "
-                f"Allowed commands: {allowed_cmds}"
-            )
+            return f"Error: Command '{command}' is not allowed. Allowed commands: {allowed_cmds}"
 
         try:
             process = await asyncio.create_subprocess_shell(
@@ -112,7 +109,9 @@ class ShellTool(BaseTool):
 
             if error_output:
                 if len(error_output) > self._config.max_output_length:
-                    error_output = error_output[: self._config.max_output_length] + "\n... (truncated)"
+                    error_output = (
+                        error_output[: self._config.max_output_length] + "\n... (truncated)"
+                    )
                 result_parts.append(f"STDERR: {error_output}")
 
             if process.returncode != 0:

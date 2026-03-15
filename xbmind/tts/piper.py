@@ -115,10 +115,13 @@ class PiperTTS(TTSProvider):
         """
         cmd = [
             self._config.executable,
-            "--model", self._config.model_path,
+            "--model",
+            self._config.model_path,
             "--output-raw",
-            "--length-scale", str(self._config.length_scale),
-            "--sentence-silence", str(self._config.sentence_silence),
+            "--length-scale",
+            str(self._config.length_scale),
+            "--sentence-silence",
+            str(self._config.sentence_silence),
         ]
 
         try:
