@@ -1,0 +1,53 @@
+# XBMind — Python dependencies
+# Install: pip install -r requirements.txt
+#
+# NOTE: On Python 3.13+, openwakeword needs --no-deps to avoid
+# tflite-runtime (no Python 3.13+ wheels). The install.sh script
+# handles this automatically.
+
+# ── Core ──────────────────────────────────────────────
+dbus-python>=1.3.2
+sounddevice>=0.4.6
+numpy>=1.24.0
+PyYAML>=6.0.1
+
+# ── Configuration ────────────────────────────────────
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# ── Logging ──────────────────────────────────────────
+structlog>=24.1.0
+
+# ── ONNX Runtime (shared by wake word + STT) ─────────
+onnxruntime>=1.16.0
+
+# ── Wake Word ────────────────────────────────────────
+# openwakeword is installed separately via install.sh
+# (needs --no-deps on Python 3.13+ to skip tflite-runtime)
+
+# ── VAD (Silero uses torch) ──────────────────────────
+# torch is installed separately via install.sh to use
+# CPU-only build (saves ~2 GB vs full CUDA bundle)
+
+# ── STT ──────────────────────────────────────────────
+faster-whisper>=1.0.0
+
+# ── LLM ──────────────────────────────────────────────
+ollama>=0.4.0
+httpx>=0.27.0
+openai>=1.12.0
+anthropic>=0.25.0
+google-generativeai>=0.5.0
+aiosqlite>=0.20.0
+
+# ── TTS ──────────────────────────────────────────────
+piper-tts>=1.2.0
+elevenlabs>=1.0.0
+
+# ── Health / HTTP ────────────────────────────────────
+aiohttp>=3.9.0
+
+# ── Development ──────────────────────────────────────
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+ruff>=0.3.0

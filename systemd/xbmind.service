@@ -1,0 +1,30 @@
+[Unit]
+Description=XBMind AI Smart Speaker
+Documentation=https://github.com/xbmind/xbmind
+After=bluetooth.target pipewire.service
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/xbmind
+ExecStart=/path/to/venv/bin/python -m xbmind.main
+Restart=on-failure
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+# Graceful shutdown
+TimeoutStopSec=15
+KillSignal=SIGTERM
+
+# Resource limits
+MemoryMax=2G
+CPUQuota=80%
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+ReadWritePaths=/path/to/xbmind/data
+
+[Install]
+WantedBy=default.target

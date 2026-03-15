@@ -1,0 +1,239 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# XBMind Configuration
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Copy this file to config/local.yaml and edit.
+# Environment variables override YAML values.
+# Env var format: XBMIND_<SECTION>__<KEY> (double underscore)
+# Example: XBMIND_LLM__MODEL=llama3.1
+
+# ── Bluetooth ────────────────────────────────────────
+bluetooth:
+  # Target device name (substring match, case-insensitive)
+  device_name: "SRS-XB100"
+
+  # MAC address (leave empty for auto-discovery by name)
+  device_mac: ""
+
+  # Auto-pair on discovery (requires agent registered via D-Bus)
+  auto_pair: true
+
+  # Reconnect settings
+  reconnect_enabled: true
+  reconnect_base_delay: 1.0       # seconds
+  reconnect_max_delay: 60.0       # seconds (exponential backoff cap)
+  reconnect_max_attempts: 0       # 0 = infinite
+
+  # Preferred Bluetooth profile
+  profile: "a2dp_sink"
+
+# ── Audio Input ──────────────────────────────────────
+audio:
+  # Input device index (null = auto-select best)
+  input_device: null
+
+  # Sample rate for capture (16000 Hz for STT compatibility)
+  sample_rate: 16000
+
+  # Channels (1 = mono, required for most STT models)
+  channels: 1
+
+  # Block size for audio callbacks (samples per block)
+  block_size: 512
+
+  # Audio format (float32 for processing, int16 for STT)
+  dtype: "float32"
+
+# ── Voice Activity Detection ────────────────────────
+vad:
+  # Silero VAD confidence threshold (0.0 – 1.0)
+  threshold: 0.5
+
+  # Minimum speech duration to trigger (seconds)
+  min_speech_duration: 0.3
+
+  # Silence duration to end speech segment (seconds)
+  silence_duration: 1.5
+
+  # Pre-roll buffer duration (seconds) — captures audio before wake word
+  pre_roll_duration: 0.5
+
+  # Maximum recording duration (seconds) — safety limit
+  max_recording_duration: 30.0
+
+# ── Wake Word ────────────────────────────────────────
+wake_word:
+  # Model name (built-in openWakeWord models)
+  # Options: "hey_jarvis", "alexa", "hey_mycroft", "timer"
+  model_name: "hey_jarvis"
+
+  # Detection threshold (0.0 – 1.0, higher = fewer false positives)
+  threshold: 0.5
+
+  # Inference framework: "onnx" or "tflite"
+  inference_framework: "onnx"
+
+  # Play chime sound on wake word detection
+  play_chime: true
+
+  # Path to custom chime WAV file (null = built-in)
+  chime_path: null
+
+# ── Speech-to-Text ──────────────────────────────────
+stt:
+  # Provider: "faster_whisper" (offline) or "google_cloud"
+  provider: "faster_whisper"
+
+  # faster-whisper settings
+  faster_whisper:
+    # Model size: "tiny", "base", "small", "medium", "large-v3"
+    model_size: "base"
+
+    # Device: "cpu", "cuda", "auto"
+    device: "auto"
+
+    # Compute type: "int8", "float16", "float32"
+    compute_type: "int8"
+
+    # Language (null = auto-detect)
+    language: null
+
+    # Beam size for decoding
+    beam_size: 5
+
+  # Google Cloud STT settings (requires GOOGLE_APPLICATION_CREDENTIALS)
+  google_cloud:
+    language_code: "en-US"
+    model: "latest_long"
+
+# ── LLM ─────────────────────────────────────────────
+llm:
+  # Provider: "ollama", "openai", "claude", "gemini"
+  provider: "ollama"
+
+  # System prompt for the assistant
+  system_prompt: >
+    You are XBMind, a helpful AI voice assistant running on a local machine.
+    You are connected to a Bluetooth speaker. Be concise and conversational.
+    When asked about capabilities, mention you can check weather, tell time,
+    set timers, look up Wikipedia, and run allowed shell commands.
+
+  # Ollama settings
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "llama3.2"
+    temperature: 0.7
+    max_tokens: 500
+    timeout: 30.0
+
+  # OpenAI settings (requires OPENAI_API_KEY env var)
+  openai:
+    model: "gpt-4o-mini"
+    temperature: 0.7
+    max_tokens: 500
+
+  # Claude settings (requires ANTHROPIC_API_KEY env var)
+  claude:
+    model: "claude-3-haiku-20240307"
+    temperature: 0.7
+    max_tokens: 500
+
+  # Gemini settings (requires GOOGLE_API_KEY env var)
+  gemini:
+    model: "gemini-1.5-flash"
+    temperature: 0.7
+    max_tokens: 500
+
+  # Conversation memory
+  memory:
+    # SQLite database path
+    db_path: "data/conversations.db"
+
+    # Max messages before auto-summarize (0 = disabled)
+    max_messages: 50
+
+    # Number of recent messages to keep after summarization
+    keep_recent: 10
+
+# ── Tools ────────────────────────────────────────────
+tools:
+  # Enable/disable individual tools
+  enabled:
+    weather: true
+    datetime: true
+    timer: true
+    wikipedia: true
+    shell: false          # Disabled by default for security
+
+  # Weather tool settings
+  weather:
+    # Provider URL (wttr.in, no API key needed)
+    base_url: "https://wttr.in"
+    default_location: ""  # Empty = auto-detect by IP
+    timeout: 10.0
+
+  # Timer settings
+  timer:
+    max_duration: 3600    # Maximum timer duration in seconds
+    alert_message: "Your timer has finished!"
+
+  # Shell tool settings (SECURITY SENSITIVE)
+  shell:
+    # Only these commands are allowed (exact prefix match)
+    allowlist:
+      - "date"
+      - "uptime"
+      - "df -h"
+      - "free -h"
+      - "uname -a"
+      - "hostname"
+      - "ip addr"
+    # Maximum execution time (seconds)
+    timeout: 10
+    # Maximum output length (characters)
+    max_output_length: 1000
+
+# ── Text-to-Speech ──────────────────────────────────
+tts:
+  # Provider: "piper" (offline) or "elevenlabs"
+  provider: "piper"
+
+  # Piper TTS settings
+  piper:
+    # Path to Piper executable
+    executable: "piper"
+
+    # Path to voice model (.onnx file)
+    model_path: "models/piper/en_US-lessac-medium.onnx"
+
+    # Output sample rate
+    sample_rate: 22050
+
+    # Speaking rate multiplier (1.0 = normal)
+    length_scale: 1.0
+
+    # Sentence silence duration (seconds)
+    sentence_silence: 0.2
+
+  # ElevenLabs settings (requires ELEVENLABS_API_KEY env var)
+  elevenlabs:
+    voice_id: "21m00Tcm4TlvDq8ikWAM"  # "Rachel" voice
+    model_id: "eleven_monolingual_v1"
+    stability: 0.5
+    similarity_boost: 0.75
+
+# ── Health Check Server ─────────────────────────────
+health:
+  enabled: true
+  host: "127.0.0.1"
+  port: 7070
+
+# ── Logging ──────────────────────────────────────────
+logging:
+  # Level: "debug", "info", "warning", "error"
+  level: "info"
+
+  # Format: "console" (colored), "json" (structured)
+  format: "console"
+
+  # Log file path (null = stdout only)
+  file: null
