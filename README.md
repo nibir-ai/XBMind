@@ -15,7 +15,7 @@
 Zero hardware engineering — pure software only.  
 Primary target: **Sony SRS-XB100** · Works with any A2DP Bluetooth speaker.
 
-[Installation](#-quickstart) · [Documentation](#-documentation) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md)
+[🌐 Website](https://nibir-ai.github.io/XBMind/) · [Installation](#-quickstart) · [Documentation](#-documentation) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md)
 
 </div>
 

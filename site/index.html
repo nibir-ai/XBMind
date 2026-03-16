@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XBMind — Turn Any Bluetooth Speaker into an Offline AI Smart Speaker</title>
+  <meta name="description" content="XBMind turns a Linux machine + Bluetooth speaker + USB microphone into a fully offline AI smart speaker. No cloud, no hardware engineering — pure software." />
+  <meta name="keywords" content="XBMind, smart speaker, offline AI, Bluetooth, voice assistant, Linux, open source" />
+  <meta name="author" content="XBMind Contributors" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="XBMind — Offline AI Smart Speaker" />
+  <meta property="og:description" content="Turn any Bluetooth speaker into an offline AI smart speaker. Pure software, no cloud dependency." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nibir-ai.github.io/XBMind/" />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" x2="12" y1="19" y2="22"/>
+        </svg>
+        XBMind
+        <span class="brand-dot"></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#quickstart">Quickstart</a></li>
+        <li><a href="#distros">Distros</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li>
+          <a href="https://github.com/nibir-ai/XBMind" target="_blank" rel="noopener" class="nav-github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+            GitHub
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        v0.1.0 — Foundation Release
+      </div>
+
+      <h1 class="reveal reveal-delay-1">
+        Turn Any Speaker Into an<br />
+        <span class="gradient-text">AI Smart Speaker</span>
+      </h1>
+
+      <p class="hero-description reveal reveal-delay-2">
+        XBMind turns a Linux machine + Bluetooth speaker + USB microphone into a fully
+        functional <strong>offline AI smart speaker</strong> — like Alexa or Google Home,
+        but running entirely on your hardware.
+      </p>
+
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#quickstart" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+          Get Started
+        </a>
+        <a href="https://github.com/nibir-ai/XBMind" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+
+      <!-- Terminal preview -->
+      <div class="hero-terminal reveal reveal-delay-4">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="prompt">$ </span><span class="command">git clone https://github.com/nibir-ai/XBMind.git</span></div>
+          <div><span class="prompt">$ </span><span class="command">cd XBMind && ./scripts/install.sh</span></div>
+          <div><span class="prompt">$ </span><span class="command">python -m xbmind.main</span></div>
+          <div><span class="output">🎙️ Listening for wake word...</span></div>
+          <div><span class="highlight">👂 "Hey Jarvis" detected!</span></div>
+          <div><span class="output">🧠 Processing: "What's the weather today?"</span></div>
+          <div><span class="highlight">📢 Speaking response through BT speaker...</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FEATURES ====== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">✨ Features</span>
+        <h2 class="section-title">Everything you need,<br />nothing you don't</h2>
+        <p class="section-subtitle">
+          Fully offline, privacy-first smart speaker capabilities — no cloud, no subscription, no data leaving your network.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon blue">🔵</div>
+          <h3>Bluetooth Auto-Pair</h3>
+          <p>Discovers, pairs, and auto-reconnects with exponential backoff via D-Bus. Works with any A2DP Bluetooth speaker.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon purple">🎙️</div>
+          <h3>Always-On Microphone</h3>
+          <p>Low-latency audio capture via sounddevice with automatic USB microphone detection and configuration.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon cyan">👂</div>
+          <h3>Wake Word Detection</h3>
+          <p>openWakeWord (ONNX) running in a dedicated OS thread. Default: "Hey Jarvis" — fully customizable.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon emerald">🗣️</div>
+          <h3>Speech-to-Text</h3>
+          <p>Offline transcription via faster-whisper (CTranslate2) with optional Google Cloud STT fallback.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon amber">🧠</div>
+          <h3>LLM Brain</h3>
+          <p>Ollama for offline inference with swappable cloud providers: OpenAI, Claude, and Gemini support built in.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon rose">🔧</div>
+          <h3>Built-in Tools</h3>
+          <p>Weather, date/time, timers, Wikipedia lookups, and shell command execution — all via the LLM tool system.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon purple">📢</div>
+          <h3>Text-to-Speech</h3>
+          <p>Piper TTS for high-quality offline speech synthesis via subprocess pipe. Optional ElevenLabs fallback.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon blue">💾</div>
+          <h3>Conversation Memory</h3>
+          <p>SQLite-backed conversation history with automatic summarization for long-term context retention.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon cyan">🏥</div>
+          <h3>Health Check</h3>
+          <p>HTTP endpoint at localhost:7070/health with JSON component status for monitoring and automation.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon emerald">⚙️</div>
+          <h3>Systemd Ready</h3>
+          <p>User service with auto-start and journald logging. Enable, start, and forget — it just works.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HOW IT WORKS ====== -->
+  <section class="section" id="how-it-works" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">🏗️ Architecture</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          A seamless pipeline from wake word to spoken response — entirely on your local machine.
+        </p>
+      </div>
+
+      <div class="pipeline-container">
+        <div class="pipeline-flow reveal">
+          <div class="pipeline-step">
+            <div class="pipeline-icon">🎙️</div>
+            <span>Mic</span>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">👂</div>
+            <span>Wake Word</span>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">🔇</div>
+            <span>VAD</span>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">🗣️</div>
+            <span>STT</span>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">🧠</div>
+            <span>LLM</span>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">📢</div>
+            <span>TTS</span>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-icon">🔊</div>
+            <span>Speaker</span>
+          </div>
+        </div>
+
+        <div class="pipeline-detail-grid">
+          <div class="pipeline-detail reveal reveal-delay-1">
+            <div class="step-num">1</div>
+            <h4>Listen</h4>
+            <p>Always-on mic captures audio, openWakeWord waits for "Hey Jarvis" in a dedicated thread.</p>
+          </div>
+          <div class="pipeline-detail reveal reveal-delay-2">
+            <div class="step-num">2</div>
+            <h4>Understand</h4>
+            <p>Silero VAD detects speech, faster-whisper transcribes it to text — all offline.</p>
+          </div>
+          <div class="pipeline-detail reveal reveal-delay-3">
+            <div class="step-num">3</div>
+            <h4>Think</h4>
+            <p>Ollama LLM processes the query, calls tools if needed (weather, timers, Wikipedia).</p>
+          </div>
+          <div class="pipeline-detail reveal reveal-delay-4">
+            <div class="step-num">4</div>
+            <h4>Respond</h4>
+            <p>Piper TTS converts the response to speech, streams it to your Bluetooth speaker.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== QUICKSTART ====== -->
+  <section class="section" id="quickstart">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">🚀 Quickstart</span>
+        <h2 class="section-title">Up and running in minutes</h2>
+        <p class="section-subtitle">
+          Three commands. That's all it takes.
+        </p>
+      </div>
+
+      <div class="quickstart-content">
+        <div class="quickstart-step reveal">
+          <h3><span class="step-number">1</span> Clone the repository</h3>
+          <div class="code-block">
+            <div><span class="prompt">$ </span><span class="command">git clone https://github.com/nibir-ai/XBMind.git</span></div>
+            <div><span class="prompt">$ </span><span class="command">cd XBMind</span></div>
+          </div>
+        </div>
+
+        <div class="quickstart-step reveal reveal-delay-1">
+          <h3><span class="step-number">2</span> Run the installer</h3>
+          <div class="code-block">
+            <div><span class="prompt">$ </span><span class="command">./scripts/install.sh</span></div>
+            <div><span class="comment"># Interactive installer handles everything:</span></div>
+            <div><span class="comment"># system deps, Python venv, AI models, Bluetooth, systemd</span></div>
+          </div>
+        </div>
+
+        <div class="quickstart-step reveal reveal-delay-2">
+          <h3><span class="step-number">3</span> Start XBMind</h3>
+          <div class="code-block">
+            <div><span class="prompt">$ </span><span class="command">source .venv/bin/activate</span></div>
+            <div><span class="prompt">$ </span><span class="command">python -m xbmind.main</span></div>
+            <div><span class="comment"># Or run as a systemd service:</span></div>
+            <div><span class="prompt">$ </span><span class="command">systemctl --user enable --now xbmind</span></div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-3" style="text-align: center; margin-top: 2rem;">
+          <a href="https://github.com/nibir-ai/XBMind/blob/main/docs/installation.md" target="_blank" rel="noopener" class="btn btn-secondary">
+            📖 Full Installation Guide
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SUPPORTED DISTROS ====== -->
+  <section class="section" id="distros" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">🐧 Compatibility</span>
+        <h2 class="section-title">Works on your distro</h2>
+        <p class="section-subtitle">
+          Tested across the most popular Linux distributions.
+        </p>
+      </div>
+
+      <div class="distro-grid">
+        <div class="distro-card reveal reveal-delay-1">
+          <span class="distro-icon">🏔️</span>
+          <div class="distro-info">
+            <h4>Arch / Manjaro</h4>
+            <span>pacman</span>
+          </div>
+          <span class="distro-status">✅</span>
+        </div>
+
+        <div class="distro-card reveal reveal-delay-2">
+          <span class="distro-icon">🟠</span>
+          <div class="distro-info">
+            <h4>Ubuntu / Debian</h4>
+            <span>apt</span>
+          </div>
+          <span class="distro-status">✅</span>
+        </div>
+
+        <div class="distro-card reveal reveal-delay-3">
+          <span class="distro-icon">🎩</span>
+          <div class="distro-info">
+            <h4>Fedora / RHEL</h4>
+            <span>dnf</span>
+          </div>
+          <span class="distro-status">✅</span>
+        </div>
+
+        <div class="distro-card reveal reveal-delay-1">
+          <span class="distro-icon">🦎</span>
+          <div class="distro-info">
+            <h4>openSUSE</h4>
+            <span>zypper</span>
+          </div>
+          <span class="distro-status">✅</span>
+        </div>
+
+        <div class="distro-card reveal reveal-delay-2">
+          <span class="distro-icon">🌑</span>
+          <div class="distro-info">
+            <h4>Void Linux</h4>
+            <span>xbps</span>
+          </div>
+          <span class="distro-status">✅</span>
+        </div>
+
+        <div class="distro-card reveal reveal-delay-3">
+          <span class="distro-icon">🏔️</span>
+          <div class="distro-info">
+            <h4>Alpine Linux</h4>
+            <span>apk</span>
+          </div>
+          <span class="distro-status">⚠️</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ROADMAP ====== -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">🗺️ Roadmap</span>
+        <h2 class="section-title">Where we're headed</h2>
+        <p class="section-subtitle">
+          XBMind is just getting started. Here's the plan.
+        </p>
+      </div>
+
+      <div class="roadmap-timeline">
+        <!-- v0.1.0 -->
+        <div class="roadmap-item reveal">
+          <div class="roadmap-marker current">✓</div>
+          <div class="roadmap-version">v0.1.0 — Current</div>
+          <h3>Foundation</h3>
+          <div class="roadmap-tags">
+            <span class="roadmap-tag done">Core pipeline</span>
+            <span class="roadmap-tag done">BT auto-pair</span>
+            <span class="roadmap-tag done">Offline STT & TTS</span>
+            <span class="roadmap-tag done">LLM + tools</span>
+            <span class="roadmap-tag done">Memory</span>
+            <span class="roadmap-tag done">Systemd</span>
+          </div>
+        </div>
+
+        <!-- v0.2.0 -->
+        <div class="roadmap-item reveal reveal-delay-1">
+          <div class="roadmap-marker future">2</div>
+          <div class="roadmap-version">v0.2.0</div>
+          <h3>Polish & UX</h3>
+          <div class="roadmap-tags">
+            <span class="roadmap-tag">Multi-room</span>
+            <span class="roadmap-tag">Streaming STT/TTS</span>
+            <span class="roadmap-tag">Custom wake word CLI</span>
+            <span class="roadmap-tag">Audio ducking</span>
+          </div>
+        </div>
+
+        <!-- v0.3.0 -->
+        <div class="roadmap-item reveal reveal-delay-2">
+          <div class="roadmap-marker future">3</div>
+          <div class="roadmap-version">v0.3.0</div>
+          <h3>Smart Home</h3>
+          <div class="roadmap-tags">
+            <span class="roadmap-tag">Home Assistant</span>
+            <span class="roadmap-tag">MQTT</span>
+            <span class="roadmap-tag">Music playback</span>
+            <span class="roadmap-tag">Multi-language</span>
+          </div>
+        </div>
+
+        <!-- v0.4.0 -->
+        <div class="roadmap-item reveal reveal-delay-3">
+          <div class="roadmap-marker future">4</div>
+          <div class="roadmap-version">v0.4.0</div>
+          <h3>Advanced AI</h3>
+          <div class="roadmap-tags">
+            <span class="roadmap-tag">RAG</span>
+            <span class="roadmap-tag">Voice cloning</span>
+            <span class="roadmap-tag">Speaker ID</span>
+            <span class="roadmap-tag">Emotion detection</span>
+          </div>
+        </div>
+
+        <!-- v1.0.0 -->
+        <div class="roadmap-item reveal reveal-delay-4">
+          <div class="roadmap-marker future">1.0</div>
+          <div class="roadmap-version">v1.0.0</div>
+          <h3>Production Release</h3>
+          <div class="roadmap-tags">
+            <span class="roadmap-tag">Docker</span>
+            <span class="roadmap-tag">Plugin system</span>
+            <span class="roadmap-tag">Web config UI</span>
+            <span class="roadmap-tag">Raspberry Pi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" x2="12" y1="19" y2="22"/>
+          </svg>
+          XBMind
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="https://github.com/nibir-ai/XBMind" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/nibir-ai/XBMind/tree/main/docs" target="_blank" rel="noopener">Docs</a></li>
+          <li><a href="https://github.com/nibir-ai/XBMind/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a></li>
+          <li><a href="https://github.com/nibir-ai/XBMind/blob/main/ROADMAP.md" target="_blank" rel="noopener">Roadmap</a></li>
+          <li><a href="https://github.com/nibir-ai/XBMind/blob/main/LICENSE" target="_blank" rel="noopener">License</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-copy">
+        MIT License · Made with ❤️ by the XBMind community
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
